@@ -49,6 +49,7 @@ public class CustomerAPI {
             CustomerEntity customerToUpdate = customerOptional.get();
             customerToUpdate.setName(customer.getName());
             customerToUpdate.setEmail(customer.getEmail());
+            customerToUpdate.setPassword(customer.getPassword());
             customerToUpdate.setRole(customer.getRole());
             return customerRepository.save(customerToUpdate);
         } else {
