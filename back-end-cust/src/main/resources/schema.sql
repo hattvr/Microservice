@@ -5,6 +5,6 @@ CREATE TABLE CUSTOMERS (
   NAME varchar(100) NOT NULL,
   PASSWORD varchar(255) NOT NULL,
   EMAIL varchar(100) NOT NULL,
-  ROLE varchar(255) NOT NULL,
+  ROLE varchar(15) NOT NULL,
   UNIQUE (EMAIL)
 );
