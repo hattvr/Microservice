@@ -1,36 +1,43 @@
 export function UserLoginForm(parameters) {
     return (
-        <table className="login-container">
-            <caption><b>Login Page</b></caption>
-            <tbody>
-                <tr>
-                <td>Email:</td>
-                <td><input 
-                    type="email"
-                    name="email"
-                    placeholder="someone@email.com" 
-                    onChange={ (e) => parameters.handleLoginChange(e) }
-                    value={parameters.formObject.email} 
-                /></td>
-                </tr>
+        <div class="login-container">
+            <div class="login-form">
+                <h1>Login</h1>
+                <div>
+                    <input 
+                        type="email"
+                        name="email"
+                        placeholder="someone@email.com"
+                        class="login-input"
+                        onChange={ (e) => parameters.handleLoginChange(e) }
+                        value={parameters.formObject.email} 
+                    />
 
-                <tr>
-                <td>Pass:</td>
-                <td><input 
-                    type="text" 
-                    name="password"
-                    placeholder="supersecurepassword" 
-                    onChange={ (e) => parameters.handleLoginChange(e) }
-                    value={parameters.formObject.password} 
-                /></td>
-                </tr>
-                
-                <tr>
-                <td colSpan="2">
-                    <button onClick={parameters.onLoginClick} className="button login-button">Login</button>
-                </td>
-                </tr>
-            </tbody>
-        </table>
+                    <input 
+                        type="text" 
+                        name="password"
+                        placeholder="supersecurepassword" 
+                        class="login-input"
+                        onChange={ (e) => parameters.handleLoginChange(e) }
+                        value={parameters.formObject.password} 
+                    />
+
+                    <button 
+                        onClick={parameters.onLoginClick} 
+                        className="button login-button"
+                    >
+                        Login
+                    </button>
+                </div>
+            </div>
+
+            <div class="login-image-container">
+                <img 
+                    src="./login_art.jpg" 
+                    alt="profile" 
+                    class="login-page-image" 
+                />
+            </div>
+        </div>
     );
 }

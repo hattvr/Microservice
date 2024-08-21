@@ -99,28 +99,50 @@
   border-color: #009879;
   border-style: solid;
   border-radius: 10px;
-  overflow: hidden;
+
   display: flex;
-  flex-direction: column;
-  grid-template-columns: auto auto;
+  flex-direction: row;
+  overflow: hidden;
+
+  margin: 0 auto;
+  user-select: none;
   
-  width: 80%;
+  width: 75%;
+  height: 75vh;
   justify-content: center;
   align-items: center;
 
-  margin: 0 auto;
   font-size: 20px;
   font-family: "Poppins", sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  padding: 25px;
 
   caption {
     text-align: center;
-    font-size: 25px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    font-family: "Poppins", sans-serif;
+    font-size: 30px;
   }
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 50%;
+}
+
+.login-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.login-page-image {
+    width: 70%;
 }
 
 .customer-table-editor {
@@ -209,7 +231,6 @@
   border: 1px solid #009879;
   width: 100%;
   align-self: center;
-  margin: 10px 0;
 }
 
 .pagination {
@@ -265,4 +286,14 @@
   border-radius: 5px;
   text-align: center;
   cursor: pointer;
+}
+
+.login-input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #009879;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+
 }

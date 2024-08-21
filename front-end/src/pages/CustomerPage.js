@@ -6,7 +6,7 @@ import { deleteById, getAll, post, put } from '../restdb';
 import { CustomerAddUpdateForm } from '../CustomerAddUpdateForm';
 import { CustomerList } from '../CustomerList';
 
-function App() {
+function CustomerPage() {
   let blankCustomer = {"id": -1, "name": "", "email": "", "password": "", "role": ""};
   const [customers, setCustomers] = useState([]);
   const [formObject, setFormObject] = useState(blankCustomer);
@@ -115,4 +115,4 @@ function App() {
   );
 }
 
-export default App;
+export default CustomerPage;

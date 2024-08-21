@@ -1,9 +1,10 @@
 import '../App.css';
 
 import React, { useState } from 'react';
+
 import { UserLoginForm } from '../UserLoginForm';
 
-function App() {
+function LoginPage() {
   let emptyLogin = {"id": -1, "email": "", "password": ""};
   const [formObject, setFormObject] = useState(emptyLogin);
 
@@ -37,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginPage;
