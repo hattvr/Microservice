@@ -35,6 +35,12 @@ public class CustomerAPI {
         return customerRepository.findById(id);
     }
 
+    // Read Operation
+    @GetMapping("/customers/byemail/{email}")
+    public CustomerEntity getCustomerById(@PathVariable("email") String email) {
+        return customerRepository.findFirstByEmail(email);
+    }
+
     // Create Operation
     @PostMapping("/customers")
     public CustomerEntity createCustomer(@RequestBody CustomerEntity customer) {
