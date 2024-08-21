@@ -12,7 +12,6 @@ export async function getAll(setCustomers) {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
-            console.log("response: ", response);
             const data = await response.json();
             setCustomers(data);
         } catch (error) {

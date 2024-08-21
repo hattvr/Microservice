@@ -21,7 +21,7 @@ function CustomerPage() {
 
   function rowSelectionHandler(customer = null) {
     // find entries by customer-row class and set font weight to normal
-    for (let i = 1; i < document.getElementsByClassName("customer-row").length; i++) {
+    for (let i = 0; i < document.getElementsByClassName("customer-row").length; i++) {
       document.getElementsByClassName("customer-row")[i].style.fontWeight = "normal";
     }
     
