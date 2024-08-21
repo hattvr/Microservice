@@ -1,130 +1,150 @@
-import '../App.css';
+import "../App.css";
 
-import React, { useEffect, useState } from 'react';
-import { deleteById, getAll, post, put } from '../restdb';
+import React, { useEffect, useState } from "react";
+import { deleteById, getAll, post, put } from "../restdb";
 
-import { CustomerAddUpdateForm } from '../CustomerAddUpdateForm';
-import { CustomerList } from '../CustomerList';
+import { CustomerAddUpdateForm } from "../CustomerAddUpdateForm";
+import { CustomerList } from "../CustomerList";
+import LogoutButton from "../components/LogoutButton";
 
 function CustomerPage() {
-  let blankCustomer = {"id": -1, "name": "", "email": "", "password": "", "role": ""};
-  const [customers, setCustomers] = useState([]);
-  const [formObject, setFormObject] = useState(blankCustomer);
-  let mode = formObject.id === -1 ? "Add" : "Update";
+	let blankCustomer = { id: -1, name: "", email: "", password: "", role: "" };
+	const [customers, setCustomers] = useState([]);
+	const [formObject, setFormObject] = useState(blankCustomer);
+	let mode = formObject.id === -1 ? "Add" : "Update";
 
-  useEffect(() => { getCustomers() }, [formObject]);
+	useEffect(() => {
+		getCustomers();
+	}, [formObject]);
 
-  const getCustomers = function () {
-    console.log("in getCustomers()");
-    getAll(setCustomers);
-  }
+	const getCustomers = function () {
+		console.log("in getCustomers()");
+		getAll(setCustomers);
+	};
 
-  function rowSelectionHandler(customer = null) {
-    // find entries by customer-row class and set font weight to normal
-    for (let i = 0; i < document.getElementsByClassName("customer-row").length; i++) {
-      document.getElementsByClassName("customer-row")[i].style.fontWeight = "normal";
-    }
-    
-    if (customer) {
-      const rows = document.getElementsByClassName("customer-row");
-    
-      for (let i = 0; i < rows.length; i++) {
-        const row = rows[i];
-        // Assuming you have the customer's name or another unique attribute in the first cell of each row
-        const customerName = row.getElementsByTagName("td")[0].textContent.trim();
+	function rowSelectionHandler(customer = null) {
+		// find entries by customer-row class and set font weight to normal
+		for (
+			let i = 0;
+			i < document.getElementsByClassName("customer-row").length;
+			i++
+		) {
+			document.getElementsByClassName("customer-row")[
+				i
+			].style.fontWeight = "normal";
+		}
 
-        if (customerName === customer.name) {
-          row.style.fontWeight = "bold";
-        } else {
-          row.style.fontWeight = "normal"; // Reset font weight for non-selected rows
-        }
-      }
-    }
-  }
+		if (customer) {
+			const rows = document.getElementsByClassName("customer-row");
 
-  let onDeleteClick = function () {
-    console.log("in onDeleteClick()");
-    let postOpCallback = () => { setFormObject(blankCustomer); }
+			for (let i = 0; i < rows.length; i++) {
+				const row = rows[i];
+				// Assuming you have the customer's name or another unique attribute in the first cell of each row
+				const customerName = row
+					.getElementsByTagName("td")[0]
+					.textContent.trim();
 
-    if (formObject.id >= 0) {
-      deleteById(formObject.id, postOpCallback);
-    } else {
-      setFormObject(blankCustomer);
-    } 
-        
-    rowSelectionHandler();
-  }
-  
-  let onSaveClick = function () {
-    console.log("in onSaveClick()");
+				if (customerName === customer.name) {
+					row.style.fontWeight = "bold";
+				} else {
+					row.style.fontWeight = "normal"; // Reset font weight for non-selected rows
+				}
+			}
+		}
+	}
 
-    // Require name, email, and password fields
-    if (formObject.name === "" || formObject.email === "" || formObject.password === "") {
-      alert("Please fill out all required fields!");
-      return;
-    }
+	let onDeleteClick = function () {
+		console.log("in onDeleteClick()");
+		let postOpCallback = () => {
+			setFormObject(blankCustomer);
+		};
 
-    // Default to "user" role, so inputting data in this field isn't required
-    if (formObject.role !== "user" && formObject.role !== "administrator") {
-        formObject.role = "user";
-    }
+		if (formObject.id >= 0) {
+			deleteById(formObject.id, postOpCallback);
+		} else {
+			setFormObject(blankCustomer);
+		}
 
-    let postOpCallback = () => { setFormObject(blankCustomer); }
+		rowSelectionHandler();
+	};
 
-    if (formObject.id === -1) {
-      post(formObject, postOpCallback);
-    } else {
-      put(formObject, postOpCallback);
-    }
+	let onSaveClick = function () {
+		console.log("in onSaveClick()");
 
-    rowSelectionHandler();
-  }
-  
-  let onCancelClick = function () {
-    console.log("in onCancelClick()");
-    
-    setFormObject(blankCustomer);
-    rowSelectionHandler();
-  }
-  
-  const handleListClick = function (customer) {
-    console.log("in handleListClick()");
+		// Require name, email, and password fields
+		if (
+			formObject.name === "" ||
+			formObject.email === "" ||
+			formObject.password === ""
+		) {
+			alert("Please fill out all required fields!");
+			return;
+		}
 
-    const isAlreadySelected = formObject.id === customer.id;
+		// Default to "user" role, so inputting data in this field isn't required
+		if (formObject.role !== "user" && formObject.role !== "admin") {
+			formObject.role = "user";
+		}
 
-    setFormObject(isAlreadySelected ? blankCustomer : customer);
-    rowSelectionHandler(isAlreadySelected ? null : customer);
-  }
+		let postOpCallback = () => {
+			setFormObject(blankCustomer);
+		};
 
-  const handleInputChange = function (event) {
-    console.log("in handleInputChange()");
-    const name = event.target.name;
-    const value = event.target.value;
-    let newFormObject = {...formObject}
-    newFormObject[name] = value;
-    setFormObject(newFormObject);
-  }
+		if (formObject.id === -1) {
+			post(formObject, postOpCallback);
+		} else {
+			put(formObject, postOpCallback);
+		}
 
-  return (
-    <div className="App">
-      <CustomerList 
-        customers={customers} 
-        handleListClick={handleListClick}
-      />
+		rowSelectionHandler();
+	};
 
-      <br />
+	let onCancelClick = function () {
+		console.log("in onCancelClick()");
 
-      <CustomerAddUpdateForm
-        mode={mode}
-        handleInputChange={handleInputChange}
-        formObject={formObject}
-        onDeleteClick={onDeleteClick}
-        onSaveClick={onSaveClick}
-        onCancelClick={onCancelClick}
-      />
+		setFormObject(blankCustomer);
+		rowSelectionHandler();
+	};
 
-    </div>
-  );
+	const handleListClick = function (customer) {
+		console.log("in handleListClick()");
+
+		const isAlreadySelected = formObject.id === customer.id;
+
+		setFormObject(isAlreadySelected ? blankCustomer : customer);
+		rowSelectionHandler(isAlreadySelected ? null : customer);
+	};
+
+	const handleInputChange = function (event) {
+		console.log("in handleInputChange()");
+		const name = event.target.name;
+		const value = event.target.value;
+		let newFormObject = { ...formObject };
+		newFormObject[name] = value;
+		setFormObject(newFormObject);
+	};
+
+	return (
+		<div className="App">
+			<LogoutButton />
+
+			<CustomerList
+				customers={customers}
+				handleListClick={handleListClick}
+			/>
+
+			<br />
+
+			<CustomerAddUpdateForm
+				mode={mode}
+				handleInputChange={handleInputChange}
+				formObject={formObject}
+				onDeleteClick={onDeleteClick}
+				onSaveClick={onSaveClick}
+				onCancelClick={onCancelClick}
+			/>
+		</div>
+	);
 }
 
 export default CustomerPage;

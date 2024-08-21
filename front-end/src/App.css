@@ -1,314 +1,318 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	text-align: center;
+	user-select: none;
 }
 
 .customer-table {
-  border-collapse: collapse;
-  width: 95%;
-  margin: 0 auto;
-  font-size: 0.9em;
-  font-family: "Poppins", sans-serif;
-  min-width: 400px;
-  user-select: none;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+	width: 95%;
+	margin: 0 auto;
+	font-size: 0.9em;
+	font-family: "Poppins", sans-serif;
+	min-width: 400px;
+	user-select: none;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
-  thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-  }
+	thead tr {
+		background-color: #009879;
+		color: #ffffff;
+		text-align: left;
+	}
 
-  :hover {
-    cursor: default;
-  }
-  
-  caption {
-    text-align: left;
-    font-size: 1.5em;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-family: "Poppins", sans-serif;
-  }
+	:hover {
+		cursor: default;
+	}
 
-  th, td {
-      padding: 12px 15px;
-      text-align: left;
-  }
+	caption {
+		text-align: left;
+		font-size: 1.5em;
+		margin-top: 25px;
+		margin-bottom: 10px;
+		font-weight: bold;
+		font-family: "Poppins", sans-serif;
+	}
 
-  tbody tr {
-    border-bottom: thin solid #dddddd;
-  }
+	th,
+	td {
+		padding: 12px 15px;
+		text-align: left;
+	}
 
-  tbody tr:nth-of-type(even) {
-      background-color: #f3f3f3;
-  }
+	tbody tr {
+		border-bottom: thin solid #dddddd;
+	}
 
-  tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-  }
+	tbody tr:nth-of-type(even) {
+		background-color: #f3f3f3;
+	}
 
-  tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-  }
+	tbody tr:last-of-type {
+		border-bottom: 2px solid #009879;
+	}
 
-  tbody tr:hover {
-    color: #009879;
-    background-color: #f8fff7e3;
-    cursor: pointer;
-  }
+	tbody tr.active-row {
+		font-weight: bold;
+		color: #009879;
+	}
+
+	tbody tr:hover {
+		color: #009879;
+		background-color: #f8fff7e3;
+		cursor: pointer;
+	}
 }
 
 .login-container {
-  border-collapse: collapse;
-  border-color: #009879;
-  border-style: solid;
-  border-radius: 10px;
+	border-collapse: collapse;
+	border-color: #009879;
+	border-style: solid;
+	border-radius: 10px;
 
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	overflow: hidden;
 
-  margin: 0 auto;
-  user-select: none;
-  
-  width: 75%;
-  height: 75vh;
-  justify-content: center;
-  align-items: center;
+	margin: 0 auto;
+	user-select: none;
 
-  font-size: 20px;
-  font-family: "Poppins", sans-serif;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	width: 75%;
+	height: 75vh;
+	justify-content: center;
+	align-items: center;
 
-  caption {
-    text-align: center;
-    font-size: 30px;
-  }
+	font-size: 20px;
+	font-family: "Poppins", sans-serif;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+	caption {
+		text-align: center;
+		font-size: 30px;
+	}
 }
 
 .login-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	width: 50%;
 }
 
 .login-image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    margin: 0 auto;
-    width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	margin: 0 auto;
+	width: 50%;
 }
 
 .login-page-image {
-    width: 70%;
+	width: 70%;
 }
 
 .customer-table-editor {
-  border-collapse: collapse;
-  border-color: #009879;
-  border-style: solid;
-  border-radius: 10px;
-  overflow: hidden;
-  display: inline-block;
-  grid-template-columns: auto auto;
-  margin: 0 auto;
-  font-size: 0.9em;
-  font-family: "Poppins", sans-serif;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  user-select: none;
+	border-collapse: collapse;
+	border-color: #009879;
+	border-style: solid;
+	border-radius: 10px;
+	overflow: hidden;
+	display: inline-block;
+	grid-template-columns: auto auto;
+	margin: 0 auto;
+	font-size: 0.9em;
+	font-family: "Poppins", sans-serif;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	user-select: none;
 
-  caption {
-    text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    font-family: "Poppins", sans-serif;
-  }
+	caption {
+		text-align: center;
+		font-size: 1.5em;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		font-family: "Poppins", sans-serif;
+	}
 
-  caption:hover, tbody tr td:first-child:hover {
-    cursor: default;
-  }
+	caption:hover,
+	tbody tr td:first-child:hover {
+		cursor: default;
+	}
 
-  th, td {
-      padding: 12px 15px;
-      text-align: left;
-  }
+	th,
+	td {
+		padding: 12px 15px;
+		text-align: left;
+	}
 
-  tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
+	tbody tr:nth-of-type(even) {
+		background-color: #f3f3f3;
+	}
 
-  tbody tr:last-child td:last-child {
-    background-color: #ffffff;
-  }
+	tbody tr:last-child td:last-child {
+		background-color: #ffffff;
+	}
 }
 
 .button {
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  outline: none;
-  outline: 0;
-  padding: 10px 25px;
-  text-align: center;
-  transform: translateY(0);
-  transition: transform 150ms, box-shadow 150ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+	border-radius: 4px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+	box-sizing: border-box;
+	color: #fff;
+	cursor: pointer;
+	font-family: "Poppins", sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	outline: none;
+	outline: 0;
+	padding: 10px 25px;
+	text-align: center;
+	transform: translateY(0);
+	transition: transform 150ms, box-shadow 150ms, background-color 0.3s;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
 }
 
 .button:hover {
-  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
-  transform: translateY(-2px);
+	box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
+	transform: translateY(-2px);
 }
 
 @media (min-width: 768px) {
-  .button {
-    padding: 10px 30px;
-    margin: 0 10px;
-  }
+	.button {
+		padding: 10px 30px;
+		margin: 0 10px;
+	}
 }
 
-.delete-button, .cancel-button {
-  background-color: #e64135;
-  border: 1px solid #e64135;
+.delete-button {
+    background-color: #ff5c5c;
+    border: 1px solid #ff5c5c;
+}
+
+.delete-button:hover {
+    background-color: #c75252;
+}
+
+.cancel-button {
+    background-color: #3590e6;
+    border: 1px solid #3590e6;
+}
+
+.cancel-button:hover {
+    background-color: #2f7fcf;
 }
 
 .save-button {
-  background-color: #009879;
-  border: 1px solid #009879;
+	background-color: #009879;
+	border: 1px solid #009879;
+}
+
+.save-button:hover {
+    background-color: #007b6e;
 }
 
 .role-select {
-  padding: 5px;
-  border: 2px solid #009879;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 50%;
-  transition: background-color 0.3s;
+	padding: 5px;
+	border: 2px solid #009879;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 50%;
+	transition: background-color 0.3s;
 }
 
 .role-select:hover {
-    background-color: #e9e9e9e3;
+	background-color: #e9e9e9e3;
 }
 
 .login-button {
-  background-color: #009879;
-  border: 1px solid #009879;
-  width: 100%;
-  align-self: center;
+	background-color: #009879;
+	border: 1px solid #009879;
+	width: 100%;
+	align-self: center;
 }
 
 .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Poppins", sans-serif;
-  margin-top: 15px;
-  gap: .5rem;
-  cursor: default;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "Poppins", sans-serif;
+	margin-top: 15px;
+	gap: 0.5rem;
+	cursor: default;
 
-  .page-input {
-    width: fit-content;
-    padding: 5px;
-    border: 1px solid #009879;
-    border-radius: 5px;
-    text-align: center; 
-  }
+	.page-input {
+		width: fit-content;
+		padding: 5px;
+		border: 1px solid #009879;
+		border-radius: 5px;
+		text-align: center;
+	}
 
-  button {
-    padding: 5px 10px;
-    border: 1px solid #009879;
-    border-radius: 30px;
-    background-color: #009879;
-    color: white;
-    cursor: pointer;
-  }
+	button {
+		padding: 5px 10px;
+		border: 1px solid #009879;
+		border-radius: 30px;
+		background-color: #009879;
+		color: white;
+		cursor: pointer;
+	}
 
-  button:hover {
-    background-color: #007b6e;
-  }
+	button:hover {
+		background-color: #007b6e;
+	}
 
-  button:disabled {
-    background-color: #d3d3d3;
-    border-color: #d3d3d3;
-    color: #a9a9a9;
-    cursor: not-allowed;
-  }
+	button:disabled {
+		background-color: #d3d3d3;
+		border-color: #d3d3d3;
+		color: #a9a9a9;
+		cursor: not-allowed;
+	}
 }
 
 .count-range {
-  justify-content: center;
-  align-items: center;
-  font-family: "Poppins", sans-serif;
-  margin-top: 15px;
-  gap: .5rem;
-  cursor: default;
+	justify-content: center;
+	align-items: center;
+	font-family: "Poppins", sans-serif;
+	margin-top: 15px;
+	gap: 0.5rem;
+	cursor: default;
 }
 
 .select-items-per-page {
-  padding: 5px;
-  border: 1px solid #009879;
-  border-radius: 5px;
-  text-align: center;
-  cursor: pointer;
+	padding: 5px;
+	border: 1px solid #009879;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
 }
 
 .login-input {
-    padding: 10px;
-    margin: 10px 0;
-    width: 100%;
-    border: 1px solid #009879;
-    border-radius: 5px;
-    font-family: "Poppins", sans-serif;
+	padding: 10px;
+	margin: 10px 0;
+	width: 100%;
+	border: 1px solid #009879;
+	border-radius: 5px;
+	font-family: "Poppins", sans-serif;
+}
 
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 2.5%;
+    padding: 10px 20px;
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #c75252;
+    transform: translateY(-2px);
 }

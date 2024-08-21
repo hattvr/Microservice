@@ -51,8 +51,8 @@ export function CustomerAddUpdateForm(parameters) {
                         className="role-select"
                     >
                         <option value="" disabled>Select role</option>
-                        <option value="user">User</option>
-                        <option value="administrator">Administrator</option>
+                        <option value="user">Default User</option>
+                        <option value="admin">Administrator</option>
                     </select>
                 </td>
 
