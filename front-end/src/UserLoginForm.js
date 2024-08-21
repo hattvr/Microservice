@@ -1,6 +1,6 @@
 export function UserLoginForm(parameters) {
     return (
-        <table className="customer-table-editor">
+        <table className="login-container">
             <caption><b>Login Page</b></caption>
             <tbody>
                 <tr>
