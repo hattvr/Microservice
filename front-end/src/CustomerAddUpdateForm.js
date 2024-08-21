@@ -13,6 +13,7 @@ export function CustomerAddUpdateForm(parameters) {
                     value={parameters.formObject.name} 
                 /></td>
                 </tr>
+
                 <tr>
                 <td>Email:</td>
                 <td><input 
@@ -23,6 +24,7 @@ export function CustomerAddUpdateForm(parameters) {
                     value={parameters.formObject.email} 
                 /></td>
                 </tr>
+
                 <tr>
                 <td>Pass:</td>
                 <td><input 
@@ -32,7 +34,17 @@ export function CustomerAddUpdateForm(parameters) {
                     onChange={ (e) => parameters.handleInputChange(e) }
                     value={parameters.formObject.password} 
                 /></td>
+
                 </tr>
+                <td>Role:</td>
+                <td><input 
+                    type="text" 
+                    name="role"
+                    placeholder="user/admin" 
+                    onChange={ (e) => parameters.handleInputChange(e) }
+                    value={parameters.formObject.role} 
+                /></td>
+
                 <tr>
                 <td colSpan="2">
                     <button onClick={parameters.onDeleteClick} className="button delete-button">Delete</button>

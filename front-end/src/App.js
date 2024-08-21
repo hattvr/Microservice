@@ -7,7 +7,7 @@ import { CustomerAddUpdateForm } from './CustomerAddUpdateForm';
 import { CustomerList } from './CustomerList';
 
 function App() {
-  let blankCustomer = {"id": -1, "name": "", "email": "", "password": ""};
+  let blankCustomer = {"id": -1, "name": "", "email": "", "password": "", "role": ""};
   const [customers, setCustomers] = useState([]);
   const [formObject, setFormObject] = useState(blankCustomer);
   let mode = formObject.id === -1 ? "Add" : "Update";

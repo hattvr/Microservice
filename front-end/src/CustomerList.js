@@ -28,6 +28,7 @@ export function CustomerList(parameters) {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Password</th>
+                        <th>Role</th>
                     </tr>
                 </thead>
                 
@@ -37,6 +38,7 @@ export function CustomerList(parameters) {
                             <td>{customer.name}</td>
                             <td>{customer.email}</td>
                             <td>{customer.password}</td>
+                            <td>{customer.role}</td>
                         </tr>
                     ))}
                 </tbody>

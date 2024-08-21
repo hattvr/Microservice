@@ -1,9 +1,10 @@
-const baseURL = 'http://localhost:4000/customers';
+const baseURL = 'http://localhost:8080/api/customers';
 
 export async function getAll(setCustomers) {
     const myInit = {
         method: 'GET',
-        mode: 'cors' };
+        mode: 'cors'
+    };
     
     const fetchData = async (url) => {
         try {
@@ -11,6 +12,7 @@ export async function getAll(setCustomers) {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
+            console.log("response: ", response);
             const data = await response.json();
             setCustomers(data);
         } catch (error) {
@@ -32,7 +34,6 @@ export async function deleteById(id, postOpCallback) {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
-            await response.json();
             postOpCallback();
         } catch (error) {
             alert(error);
@@ -43,7 +44,6 @@ export async function deleteById(id, postOpCallback) {
 }
 
 export async function post(customer, postOpCallback) {
-    // remove pre-existing field to allow the server to assign an id
     delete customer.id;
     
     const myInit = {
