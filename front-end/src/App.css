@@ -175,6 +175,14 @@
   border: 1px solid #009879;
 }
 
+.login-button {
+  background-color: #009879;
+  border: 1px solid #009879;
+  width: 100%;
+  align-self: center;
+  margin: 10px 0;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
