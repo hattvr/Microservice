@@ -57,6 +57,18 @@ function CustomerPage() {
   
   let onSaveClick = function () {
     console.log("in onSaveClick()");
+
+    // Require name, email, and password fields
+    if (formObject.name === "" || formObject.email === "" || formObject.password === "") {
+      alert("Please fill out all required fields!");
+      return;
+    }
+
+    // Default to "user" role, so inputting data in this field isn't required
+    if (formObject.role !== "user" && formObject.role !== "administrator") {
+        formObject.role = "user";
+    }
+
     let postOpCallback = () => { setFormObject(blankCustomer); }
 
     if (formObject.id === -1) {

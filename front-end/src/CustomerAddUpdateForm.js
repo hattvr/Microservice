@@ -5,45 +5,56 @@ export function CustomerAddUpdateForm(parameters) {
             <tbody>
                 <tr>
                 <td>Name:</td>
-                <td><input 
-                    type="text" 
-                    name="name"
-                    placeholder="Some Person" 
-                    onChange={ (e) => parameters.handleInputChange(e) }
-                    value={parameters.formObject.name} 
-                /></td>
+                <td>
+                    <input 
+                        type="text" 
+                        name="name"
+                        placeholder="Some Person" 
+                        onChange={ (e) => parameters.handleInputChange(e) }
+                        value={parameters.formObject.name} 
+                    />
+                </td>
                 </tr>
 
                 <tr>
                 <td>Email:</td>
-                <td><input 
-                    type="email"
-                    name="email"
-                    placeholder="someone@email.com" 
-                    onChange={ (e) => parameters.handleInputChange(e) }
-                    value={parameters.formObject.email} 
-                /></td>
+                <td>
+                    <input 
+                        type="email"
+                        name="email"
+                        placeholder="someone@email.com" 
+                        onChange={ (e) => parameters.handleInputChange(e) }
+                        value={parameters.formObject.email} 
+                    />
+                </td>
                 </tr>
 
                 <tr>
                 <td>Pass:</td>
-                <td><input 
-                    type="text" 
-                    name="password"
-                    placeholder="supersecurepassword" 
-                    onChange={ (e) => parameters.handleInputChange(e) }
-                    value={parameters.formObject.password} 
-                /></td>
+                <td>
+                    <input 
+                        type="text" 
+                        name="password"
+                        placeholder="supersecurepassword" 
+                        onChange={ (e) => parameters.handleInputChange(e) }
+                        value={parameters.formObject.password} 
+                    />
+                </td>
 
                 </tr>
                 <td>Role:</td>
-                <td><input 
-                    type="text" 
-                    name="role"
-                    placeholder="user/admin" 
-                    onChange={ (e) => parameters.handleInputChange(e) }
-                    value={parameters.formObject.role} 
-                /></td>
+                <td>
+                    <select 
+                        name="role"
+                        onChange={(e) => parameters.handleInputChange(e)}
+                        value={parameters.formObject.role}
+                        className="role-select"
+                    >
+                        <option value="" disabled>Select role</option>
+                        <option value="user">User</option>
+                        <option value="administrator">Administrator</option>
+                    </select>
+                </td>
 
                 <tr>
                 <td colSpan="2">
