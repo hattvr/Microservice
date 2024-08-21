@@ -20,14 +20,25 @@ function App() {
   }
 
   function rowSelectionHandler(customer = null) {
-    for (let i = 1; i < document.getElementsByTagName("tr").length; i++) {
-      document.getElementsByTagName("tr")[i].style.fontWeight = "normal";
+    // find entries by customer-row class and set font weight to normal
+    for (let i = 1; i < document.getElementsByClassName("customer-row").length; i++) {
+      document.getElementsByClassName("customer-row")[i].style.fontWeight = "normal";
     }
     
     if (customer) {
-      const numRecords = document.getElementsByTagName("tr").length;
-      const index = customer.id % numRecords === 0 ? numRecords : customer.id % numRecords;
-      document.getElementsByTagName("tr")[index].style.fontWeight = "bold";
+      const rows = document.getElementsByClassName("customer-row");
+    
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        // Assuming you have the customer's name or another unique attribute in the first cell of each row
+        const customerName = row.getElementsByTagName("td")[0].textContent.trim();
+
+        if (customerName === customer.name) {
+          row.style.fontWeight = "bold";
+        } else {
+          row.style.fontWeight = "normal"; // Reset font weight for non-selected rows
+        }
+      }
     }
   }
 

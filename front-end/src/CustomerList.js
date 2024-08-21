@@ -21,7 +21,7 @@ export function CustomerList(parameters) {
     return (
         <div>
             <table className="customer-table">
-                <caption><b>Zaeem Zahid Project - Customer List</b></caption>
+                <caption><b>Team Panda - Admin View</b></caption>
                 
                 <thead>
                     <tr>
@@ -34,7 +34,10 @@ export function CustomerList(parameters) {
                 
                 <tbody>
                     {currentCustomers.map((customer, index) => (
-                        <tr key={index} onClick={() => parameters.handleListClick(customer)}>
+                        <tr 
+                            key={index} onClick={() => parameters.handleListClick(customer)}
+                            className="customer-row"
+                        >
                             <td>{customer.name}</td>
                             <td>{customer.email}</td>
                             <td>{customer.password}</td>

@@ -1,15 +1,14 @@
+import './App.css';
 
-import React from 'react';
-import LoginPage from './pages/LoginPage';
+import React, { useEffect, useState } from 'react';
 import CustomerPage from './pages/CustomerPage';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <CustomerPage />
     </div>
   );
 }
-  
 
 export default App;

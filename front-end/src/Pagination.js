@@ -77,10 +77,9 @@ export function Pagination(parameters) {
                 <input
                     type="number"
                     value={inputPage}
-                    classname="page-input"
+                    className="page-input"
                     onChange={handlePageChange}
                     onKeyDown={handleKeyDown}
-                    className="page-input"
                 /> 
                 <span>of {totalPages}</span>
 
