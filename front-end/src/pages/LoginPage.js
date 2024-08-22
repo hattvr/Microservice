@@ -3,6 +3,7 @@ import "../App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { UserLoginForm } from "../UserLoginForm";
+import { getToken } from "../restauth";
 
 function LoginPage() {
 	let emptyLogin = { id: -1, email: "", password: "" };
@@ -31,6 +32,9 @@ function LoginPage() {
 		}
 
 		console.log("formObject: ", formObject);
+
+		// Make request to localhost:8081/accounts/api
+
 		navigate("/customers");
 	};
 
