@@ -2,14 +2,14 @@ import "../App.css";
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { UserLoginForm } from "../UserLoginForm";
+import { UserRegisterForm } from "../UserRegisterForm";
 
-function LoginPage() {
-	let emptyLogin = { id: -1, email: "", password: "" };
-	const [formObject, setFormObject] = useState(emptyLogin);
+function RegisterPage() {
+	let emptyRegister = { id: -1, name: "", email: "", password: "", role: "" };
+	const [formObject, setFormObject] = useState(emptyRegister);
 	const navigate = useNavigate(); // Initialize useNavigate
 
-	const handleLoginChange = function (event) {
+	const handleRegisterChange = function (event) {
 		console.log("in handleInputChange()");
 		const name = event.target.name;
 		const value = event.target.value;
@@ -18,11 +18,12 @@ function LoginPage() {
 		setFormObject(newFormObject);
 	};
 
-	let onLoginClick = function () {
-		console.log("in onLoginClick()");
-
+	let onRegisterClick = function () {
+		console.log("in onRegisterClick()");
+		
 		// Require name, email, and password fields
 		if (
+			formObject.name === "" ||
 			formObject.email === "" ||
 			formObject.password === ""
 		) {
@@ -30,19 +31,24 @@ function LoginPage() {
 			return;
 		}
 
+		// Default to "user" role, so inputting data in this field isn't required
+		if (formObject.role !== "user" && formObject.role !== "admin") {
+			formObject.role = "user";
+		}
+
 		console.log("formObject: ", formObject);
-		navigate("/customers");
+		navigate("/");
 	};
 
 	return (
 		<div className="App" style={{ padding: "50px" }}>
-			<UserLoginForm
-				handleLoginChange={handleLoginChange}
-				onLoginClick={onLoginClick}
+			<UserRegisterForm
+				handleRegisterChange={handleRegisterChange}
+				onRegisterClick={onRegisterClick}
 				formObject={formObject}
 			/>
 		</div>
 	);
 }
 
-export default LoginPage;
+export default RegisterPage;
