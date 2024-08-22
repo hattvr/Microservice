@@ -17,8 +17,12 @@ export async function getToken(customer) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
 
+            if (response.status !== 200) {
+                return { token: null };
+            }
+            
             const token = await response.json();
-            console.log(token);
+            return token;
         } catch (error) {
             alert(error);
         }

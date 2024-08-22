@@ -33,9 +33,16 @@ function LoginPage() {
 
 		console.log("formObject: ", formObject);
 
-		// Make request to localhost:8081/accounts/api
-
-		navigate("/customers");
+		getToken(formObject).then((data) => {
+			console.log("data: ", data);
+			if (data.token) {
+				localStorage.setItem("token", data.token);
+				localStorage.setItem("email", formObject.email);
+				navigate("/customers");
+			} else {
+				alert("Invalid email or password!");
+			}
+		});
 	};
 
 	return (
