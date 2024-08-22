@@ -5,7 +5,7 @@ import org.json.JSONObject;
 public class CustomerFactory {
 	
 	public static Customer getCustomer(String json_string){
-		
+	if (json_string.isEmpty()) return null;
         // parsing file "JSONExample.json" 
         JSONObject jobj = new JSONObject(json_string); 
           

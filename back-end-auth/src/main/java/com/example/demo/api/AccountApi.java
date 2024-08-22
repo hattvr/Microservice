@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTCreationException;
 import com.example.demo.domain.Customer;
 import com.example.demo.domain.CustomerFactory;
 import com.example.demo.domain.Token;
+import com.example.demo.util.JWTHelper;
 
 @RestController
 public class AccountApi {
@@ -38,16 +35,15 @@ public class AccountApi {
         if (email == null || password == null
         || email.length()==0 || password.length()==0
         || !verifyCredentials(email, password)) return (ResponseEntity<?>) ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
 
-        // Long id = getCustomerByEmail(email).getId();
-        // Token token = createToken(id);
-        // ResponseEntity<?> response = ResponseEntity.ok(token);
-        // return response;
+        Token token = createToken("ApiClientApp");
+        ResponseEntity<?> response = ResponseEntity.ok(token);
+        return response;
     }
 
     private boolean verifyCredentials(String email, String password) {
-        System.out.println("verifyCredentials running");
+        // System.out.println("verifyCredentials running");
+        
         // special case for application user
 		if(email.equals("me@me.com") && password.equals("secret")) {
 			return true;
@@ -71,26 +67,12 @@ public class AccountApi {
 	}
 
     private static Token createToken(String username) {
-        //TODO scopes
-        // String scopes = "com.example.demo.apis";
-        // // special case for application user
-        // if( username.equalsIgnoreCase("ApiClientApp")) {
-        //     scopes = "com.webage.auth.apis";
-        // }
-        String token_string = null;
-        try {
-		    Algorithm algorithm = Algorithm.HMAC256("secret");
-		    long fiveHoursInMillis = 1000 * 60 * 60 * 5;
-		    Date expireDate = new Date(System.currentTimeMillis() + fiveHoursInMillis);
-		    token_string = JWT.create()
-		    	.withSubject("apiuser")
-		        .withIssuer("me@me.com")
-		        // .withClaim("scopes", scopes)
-		        .withExpiresAt(expireDate)
-		        .sign(algorithm);
-		} catch (JWTCreationException exception){
-			return null;
-		}
+        String scopes = "com.example.demo.data.apis";
+    	// special case for application user
+    	if( username.equalsIgnoreCase("ApiClientApp")) {
+    		scopes = "com.example.demo.auth.apis";
+    	}
+    	String token_string = JWTHelper.createToken(scopes);
         
         if (token_string == null) return null;
 
