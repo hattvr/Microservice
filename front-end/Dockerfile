@@ -3,12 +3,11 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY . .
-
 COPY package*.json ./
-
 RUN npm install
 
-EXPOSE 5173
+COPY . .
 
-ENTRYPOINT [ "npm", "run", "dev"]
+EXPOSE 3000
+
+ENTRYPOINT [ "npm", "start" ]
