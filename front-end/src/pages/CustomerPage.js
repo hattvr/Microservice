@@ -1,7 +1,7 @@
 import "../App.css";
 
 import React, { useEffect, useState } from "react";
-import { deleteById, getAll, post, put } from "../restdb";
+import { deleteById, getAll, post, put } from "../rest/index";
 
 import { CustomerAddUpdateForm } from "../CustomerAddUpdateForm";
 import { CustomerList } from "../CustomerList";

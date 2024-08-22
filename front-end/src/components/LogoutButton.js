@@ -5,10 +5,11 @@ function LogoutButton() {
 	const navigate = useNavigate();
 
 	const handleLogout = () => {
-		// Perform any logout logic here, e.g., clearing tokens or session data
 		console.log("User logged out");
 
-		// Redirect to the login page
+		localStorage.removeItem("token");
+		localStorage.removeItem("email");
+
 		navigate("/");
 	};
 

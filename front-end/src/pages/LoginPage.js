@@ -3,7 +3,7 @@ import "../App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { UserLoginForm } from "../UserLoginForm";
-import { getToken } from "../restauth";
+import { getToken } from "../rest/index";
 
 function LoginPage() {
 	let emptyLogin = { id: -1, email: "", password: "" };
@@ -35,7 +35,7 @@ function LoginPage() {
 
 		getToken(formObject).then((data) => {
 			console.log("data: ", data);
-			if (data.token) {
+			if (data && data.token) {
 				localStorage.setItem("token", data.token);
 				localStorage.setItem("email", formObject.email);
 				navigate("/customers");
