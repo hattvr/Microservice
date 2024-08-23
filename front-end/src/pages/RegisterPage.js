@@ -1,9 +1,10 @@
 import "../App.css";
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+
 import { UserRegisterForm } from "../UserRegisterForm";
 import { registerAccount } from "../rest/index";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function RegisterPage() {
 	let emptyRegister = { id: -1, name: "", email: "", password: "", role: "" };
@@ -38,7 +39,10 @@ function RegisterPage() {
 		}
 
 		console.log("formObject: ", formObject);
-		navigate("/");
+		registerAccount(formObject);
+        
+        navigate("/"); // Redirect to login page
+        alert("Account registered successfully! Please login using your new credentials.");
 	};
 
 	return (

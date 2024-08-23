@@ -23,9 +23,6 @@ function LoginPage() {
 	let onLoginClick = function () {
 		console.log("in onLoginClick()");
 
-        formObject.email = "zaeem@email.com"
-        formObject.password = "zaeempassword"
-
 		// Require name, email, and password fields
 		if (
 			formObject.email === "" ||

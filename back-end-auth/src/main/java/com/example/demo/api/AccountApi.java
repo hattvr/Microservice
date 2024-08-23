@@ -82,7 +82,6 @@ public class AccountApi {
             } else {
                 return ResponseEntity.status(HttpStatus.CREATED).build();
             }
-    
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
