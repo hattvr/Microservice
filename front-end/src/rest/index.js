@@ -122,6 +122,8 @@ export function getToken(customer) {
 }
 
 export function registerAccount(customer) {
+    delete customer.id;
+
     const myInit = {
         method: 'POST',
         headers: {
@@ -136,7 +138,6 @@ export function registerAccount(customer) {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
-            return response.json();
         })
         .then(account => {
             console.log(account);
