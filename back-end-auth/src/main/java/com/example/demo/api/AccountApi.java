@@ -18,7 +18,7 @@ import com.example.demo.domain.CustomerFactory;
 import com.example.demo.domain.Token;
 import com.example.demo.util.JWTHelper;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin
 @RestController
 public class AccountApi {
 

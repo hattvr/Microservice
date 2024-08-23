@@ -18,53 +18,45 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 @Order(1)
 public class AuthFilter implements Filter {
-    private String auth_scope = "com.example.demo.auth.apis";
-	private String api_scope = "com.example.demo.data.apis";
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		// get authorization header
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
-		String uri = req.getRequestURI();
-		
-		System.out.println("AuthFilter running");
-		// for development purposes
-		// allow turning off auth checking with header tokencheck:false
-		String tokenheader = req.getHeader("tokencheck");
-		if( tokenheader != null && !tokenheader.equalsIgnoreCase("true") ) {
-			chain.doFilter(request, response);
-			return;		
-		}
-		
-		// auth checking will not apply to these cases
-		// token endpoint
-		// user register endpoint
-		// healthcheck endpoints on customer api
-		System.out.println("\n\n" + uri);
-		if(uri.equals("/api/") || uri.startsWith("/account/register")) {
-			chain.doFilter(request, response);
-			return;
-		}
-		
-		// check JWT token
-		String authheader = req.getHeader("authorization");
-        System.out.println("authheader: " + authheader);
+    private final String authScope = "com.example.demo.auth.apis";
+    private final String apiScope = "com.example.demo.data.apis";
 
-		if(authheader != null && authheader.length() > 7 && authheader.startsWith("Bearer")) {
-			String jwt_token = authheader.substring(7, authheader.length());
-			if(JWTHelper.verifyToken(jwt_token)) {
-				System.out.println("Token verified");
-				String request_scopes = JWTHelper.getScopes(jwt_token);
-				if(request_scopes.contains(api_scope) || request_scopes.contains(auth_scope)) {
-					chain.doFilter(request, response);
-					return;
-				}
-			}
-		}
-		
-		// continue
-		res.sendError(HttpServletResponse.SC_FORBIDDEN, "failed authentication");
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
 
-	}
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        String uri = req.getRequestURI();
+
+        System.out.println("AuthFilter running: " + uri);
+
+        // Check JWT token
+        String authHeader = req.getHeader("Authorization");
+        if (authHeader == null) {
+            authHeader = req.getHeader("authorization"); // Case-insensitive check
+        }
+
+        System.out.println("Authorization header: " + authHeader);
+
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String jwtToken = authHeader.substring(7); // Extract the token
+
+            if (JWTHelper.verifyToken(jwtToken)) {
+                System.out.println("Token verified");
+                String requestScopes = JWTHelper.getScopes(jwtToken);
+                if (requestScopes.contains(apiScope) || requestScopes.contains(authScope)) {
+                    chain.doFilter(request, response);
+                    return;
+                }
+            } else {
+                System.out.println("Token verification failed");
+            }
+        } else {
+            System.out.println("Authorization header is missing or doesn't start with Bearer");
+        }
+
+        // If we reach here, authentication failed
+        res.sendError(HttpServletResponse.SC_FORBIDDEN, "Failed authentication");
+    }
 }

@@ -16,7 +16,7 @@ import com.example.demo.dao.CustomerEntity;
 import com.example.demo.dao.CustomerRepository;
 
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin
 @RestController
 public class CustomerAPI {
     @Autowired
@@ -26,7 +26,7 @@ public class CustomerAPI {
     public String checkConnection() {
         return "Customer API Controller is online!";
     }
-
+    
     @GetMapping("/customers")
     public Iterable<CustomerEntity> getAllCustomers() {
         return customerRepository.findAll();

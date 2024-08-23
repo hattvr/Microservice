@@ -1,9 +1,10 @@
 import "../App.css";
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+
 import { UserLoginForm } from "../UserLoginForm";
 import { getToken } from "../rest/index";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function LoginPage() {
 	let emptyLogin = { id: -1, email: "", password: "" };
@@ -21,6 +22,9 @@ function LoginPage() {
 
 	let onLoginClick = function () {
 		console.log("in onLoginClick()");
+
+        formObject.email = "zaeem@email.com"
+        formObject.password = "zaeempassword"
 
 		// Require name, email, and password fields
 		if (

@@ -1,18 +1,13 @@
-const customerAPI = 'http://localhost:8080/api/customers';
-const accountAPI = 'http://localhost:8081/account';
-
-const myHeaders = new Headers(
-    {
-        'Content-Type': 'application/json',
-        'authorization': 'Bearer ' + localStorage.getItem('token')
-    }
-);
+const customerAPI = '/api/customers';
+const accountAPI = '/account';
 
 export function getAll(setCustomers) {
     const myInit = {
         method: 'GET',
-        mode: 'cors',
-        headers: myHeaders
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
     };
 
     fetch(customerAPI, myInit)
@@ -31,11 +26,13 @@ export function getAll(setCustomers) {
 export function deleteById(id, postOpCallback) {
     const myInit = {
         method: 'DELETE',
-        mode: 'cors',
-        headers: myHeaders
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + localStorage.getItem('token')
+        }
     };
 
-    fetch(customerAPI + "/" + id, myInit)
+    fetch(`${customerAPI}/${id}`, myInit)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
@@ -52,8 +49,10 @@ export function post(customer, postOpCallback) {
 
     const myInit = {
         method: 'POST',
-        mode: 'cors',
-        headers: myHeaders,
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
         body: JSON.stringify(customer)
     };
 
@@ -73,12 +72,14 @@ export function post(customer, postOpCallback) {
 export function put(customer, postOpCallback) {
     const myInit = {
         method: 'PUT',
-        mode: 'cors',
-        headers: myHeaders,
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
         body: JSON.stringify(customer)
     };
 
-    fetch(customerAPI + "/" + customer.id, myInit)
+    fetch(`${customerAPI}/${customer.id}`, myInit)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
@@ -94,12 +95,14 @@ export function put(customer, postOpCallback) {
 export function getToken(customer) {
     const myInit = {
         method: 'POST',
-        mode: 'cors',
-        headers: myHeaders,
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
         body: JSON.stringify(customer)
     };
 
-    return fetch(accountAPI + '/token', myInit)
+    return fetch(`${accountAPI}/token`, myInit)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
@@ -121,12 +124,14 @@ export function getToken(customer) {
 export function registerAccount(customer) {
     const myInit = {
         method: 'POST',
-        mode: 'cors',
-        headers: myHeaders,
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + localStorage.getItem('token')
+        },
         body: JSON.stringify(customer)
     };
 
-    fetch(accountAPI + '/register', myInit)
+    fetch(`${accountAPI}/register`, myInit)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
