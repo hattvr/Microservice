@@ -8,55 +8,48 @@ const myHeaders = new Headers(
     }
 );
 
-export async function getAll(setCustomers) {
+export function getAll(setCustomers) {
     const myInit = {
         method: 'GET',
         mode: 'cors',
         headers: myHeaders
     };
-    
-    const fetchData = async (url) => {
-        console.log('fetching data, url: ', url);
-        try {
-            const response = await fetch(url, myInit);
+
+    fetch(customerAPI, myInit)
+        .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
-            const data = await response.json();
-            setCustomers(data);
-        } catch (error) {
+            return response.json();
+        })
+        .then(data => setCustomers(data))
+        .catch(error => {
             alert(error);
-        }
-    }
-    
-    fetchData(customerAPI);
+        });
 }
 
-export async function deleteById(id, postOpCallback) {
+export function deleteById(id, postOpCallback) {
     const myInit = {
         method: 'DELETE',
         mode: 'cors',
         headers: myHeaders
     };
-    
-    const deleteRequest = async (url) => {
-        try {
-            const response = await fetch(url, myInit);
+
+    fetch(customerAPI + "/" + id, myInit)
+        .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
             postOpCallback();
-        } catch (error) {
+        })
+        .catch(error => {
             alert(error);
-        }
-    }
-    
-    deleteRequest(customerAPI + "/" + id);
+        });
 }
 
-export async function post(customer, postOpCallback) {
+export function post(customer, postOpCallback) {
     delete customer.id;
-    
+
     const myInit = {
         method: 'POST',
         mode: 'cors',
@@ -64,23 +57,20 @@ export async function post(customer, postOpCallback) {
         body: JSON.stringify(customer)
     };
 
-    const postRequest = async (url) => {
-        try {
-            const response = await fetch(url, myInit);
+    fetch(customerAPI, myInit)
+        .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
-            await response.json();
-            postOpCallback();
-        } catch (error) {
+            return response.json();
+        })
+        .then(() => postOpCallback())
+        .catch(error => {
             alert(error);
-        }
-    }
-    
-    postRequest(customerAPI);
+        });
 }
 
-export async function put(customer, postOpCallback) {
+export function put(customer, postOpCallback) {
     const myInit = {
         method: 'PUT',
         mode: 'cors',
@@ -88,23 +78,20 @@ export async function put(customer, postOpCallback) {
         body: JSON.stringify(customer)
     };
 
-    const putRequest = async (url) => {
-        try {
-            const response = await fetch(url, myInit);
+    fetch(customerAPI + "/" + customer.id, myInit)
+        .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
-            await response.json();
-            postOpCallback();
-        } catch (error) {
+            return response.json();
+        })
+        .then(() => postOpCallback())
+        .catch(error => {
             alert(error);
-        }
-    }
-    
-    putRequest(customerAPI + "/" + customer.id);
+        });
 }
 
-export async function getToken(customer) {
+export function getToken(customer) {
     const myInit = {
         method: 'POST',
         mode: 'cors',
@@ -112,30 +99,26 @@ export async function getToken(customer) {
         body: JSON.stringify(customer)
     };
 
-    const postRequest = async (url) => {
-        try {
-            const response = await fetch(url, myInit);
+    return fetch(accountAPI + '/token', myInit)
+        .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
-            
-            const token = await response.json();
-            
+            return response.json();
+        })
+        .then(token => {
             if (!token || !token.token) {
                 throw new Error('Invalid email or password');
             }
-
             return token;
-        } catch (error) {
+        })
+        .catch(error => {
             console.error(error);
             return null; // Return null in case of any error
-        }
-    }
-    
-    return await postRequest(accountAPI + '/token');
+        });
 }
 
-export async function registerAccount(customer) {
+export function registerAccount(customer) {
     const myInit = {
         method: 'POST',
         mode: 'cors',
@@ -143,19 +126,17 @@ export async function registerAccount(customer) {
         body: JSON.stringify(customer)
     };
 
-    const postRequest = async (url) => {
-        try {
-            const response = await fetch(url, myInit);
+    fetch(accountAPI + '/register', myInit)
+        .then(response => {
             if (!response.ok) {
                 throw new Error(`Error fetching data: ${response.status}`);
             }
-
-            const account = await response.json();
+            return response.json();
+        })
+        .then(account => {
             console.log(account);
-        } catch (error) {
+        })
+        .catch(error => {
             alert(error);
-        }
-    }
-    
-    postRequest(accountAPI + '/register');
+        });
 }
