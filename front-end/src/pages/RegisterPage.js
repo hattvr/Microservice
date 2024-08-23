@@ -3,6 +3,7 @@ import "../App.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { UserRegisterForm } from "../UserRegisterForm";
+import { registerAccount } from "../rest/index";
 
 function RegisterPage() {
 	let emptyRegister = { id: -1, name: "", email: "", password: "", role: "" };

@@ -28,12 +28,20 @@ export function UserLoginForm(parameters) {
                     >
                         Login
                     </button>
+
+                    <h6>
+                        Don't have an account?
+                        <br></br>
+                        <a href="/register" style={{ color: "green" }}>
+                            Register Here!
+                        </a>
+                    </h6>
                 </div>
             </div>
 
             <div class="login-image-container">
                 <img 
-                    src="./login_art.jpg" 
+                    src="./login_art.png" 
                     alt="profile" 
                     class="login-page-image" 
                 />

@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dao.CustomerEntity;
 import com.example.demo.dao.CustomerRepository;
 
-@CrossOrigin(maxAge = 3600)
+
+@CrossOrigin
 @RestController
 public class CustomerAPI {
     @Autowired
@@ -25,7 +26,7 @@ public class CustomerAPI {
     public String checkConnection() {
         return "Customer API Controller is online!";
     }
-
+    
     @GetMapping("/customers")
     public Iterable<CustomerEntity> getAllCustomers() {
         return customerRepository.findAll();
@@ -35,6 +36,12 @@ public class CustomerAPI {
     @GetMapping("/customers/{id}")
     public Optional<CustomerEntity> getCustomerById(@PathVariable Long id) {
         return customerRepository.findById(id);
+    }
+
+    // Read Operation
+    @GetMapping("/customers/byemail/{email}")
+    public CustomerEntity getCustomerById(@PathVariable("email") String email) {
+        return customerRepository.findFirstByEmail(email);
     }
 
     // Create Operation
