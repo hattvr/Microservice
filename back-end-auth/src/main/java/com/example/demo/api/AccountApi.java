@@ -43,6 +43,52 @@ public class AccountApi {
         return response;
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody Customer customer) {
+        System.out.println("register running");
+        String name = customer.getName();
+        String email = customer.getEmail();
+        String password = customer.getPassword();
+        String role = customer.getRole();
+
+        if (name == null || email == null || password == null || role == null
+        || name.length() == 0 || email.length() == 0 || password.length() == 0 || role.length() == 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    
+        try {
+            URL url = new URL("http://localhost:8080/api/customers");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+    
+            Token token = getAppUserToken();
+            conn.setRequestProperty("Authorization", "Bearer " + token.getToken());
+            conn.setDoOutput(true);
+    
+            String input = "{\"name\":\"" + name 
+            + "\",\"email\":\"" + email 
+            + "\",\"password\":\"" 
+            + password + "\",\"role\":\"" 
+            + role 
+            + "\"}";
+
+            conn.getOutputStream().write(input.getBytes());
+    
+            System.out.println("response code: " + conn.getResponseCode());
+    
+            if (conn.getResponseCode() != 200) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            } else {
+                return ResponseEntity.status(HttpStatus.CREATED).build();
+            }
+    
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
     private boolean verifyCredentials(String email, String password) {
         // System.out.println("verifyCredentials running");
         
